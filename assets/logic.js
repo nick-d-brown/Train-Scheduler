@@ -38,13 +38,13 @@ var trainInfo = {
   // on submit adds value to trainInfo obj properties
    $("#trainAddForm").on("submit", function (event) {
     event.preventDefault();
-
+     console.log(trainInfo.nextTrainMin, "this works");
     trainInfo.name = $("#trainName").val().trim();
     trainInfo.destination = $("#trainDestination").val().trim();
     trainInfo.firstTrain = $("#firstTrainTime").val().trim();
-    trainInfo.frequency = parseInt($("#trainFrequency").val().trim());
+    trainInfo.frequency = $("#trainFrequency").val().trim();
     
-    firstTrainConverted = moment(trainInfo.firstTrain, "hh:mm").subtract("1, years");
+    firstTrainConverted = moment(trainInfo.firstTrain, "hh:mm").subtract(1, "years");
     
     currentTime = moment();
     
@@ -52,7 +52,14 @@ var trainInfo = {
     
     remainingTime = diffTime % trainInfo.frequency;
     trainInfo.nextTrainMin = trainInfo.frequency - remainingTime;
-     trainInfo.nextTrainTime = moment().add(trainInfo.nextTrainMin, "minutes").format("hh:mm");
+    
+    if (trainInfo.nextTrainTime < trainInfo.firstTrain) { //need to compare these two using unix time (if smaller then display first train time)
+       trainInfo.nextTrainTime = trainInfo.firstTrain;
+    } else {
+      trainInfo.nextTrainTime = moment().add(trainInfo.nextTrainMin, "minutes").format("hh:mm");
+    }
+    
+    
 
     database.ref().push(trainInfo);
 
