@@ -21,7 +21,8 @@ var trainInfo = {
   firstTrain: "",
   frequency: 0,
   nextTrainMin: 0,
-  nextTrainTime: 0
+  nextTrainTime: 0,
+  timeAdded: 0
 }
 
    var firstTrainConverted;
@@ -43,6 +44,7 @@ var trainInfo = {
     trainInfo.destination = $("#trainDestination").val().trim();
     trainInfo.firstTrain = $("#firstTrainTime").val().trim();
     trainInfo.frequency = $("#trainFrequency").val().trim();
+    trainInfo.timeAdded = moment();
     
     firstTrainConverted = moment(trainInfo.firstTrain, "hh:mm").subtract(1, "years");
     
@@ -70,12 +72,12 @@ var trainInfo = {
 
      trainInfo.name = childSnapshot.val().name;
      trainInfo.destination = childSnapshot.val().destination;
-     trainInfo.firstTrain = childSnapshot.val().firstTrain;
+     trainInfo.timeAdded = childSnapshot.val().timeAdded;
      trainInfo.frequency = childSnapshot.val().frequency;
      trainInfo.nextTrainMin = childSnapshot.val().nextTrainMin;
      trainInfo.nextTrainTime = childSnapshot.val().nextTrainTime;
      
      $("#trainRows").append("<tr><td>" + trainInfo.name + "</td><td>" + trainInfo.destination + "</td><td>" +
-       trainInfo.firstTrain + "</td><td>" + trainInfo.frequency + "</td><td>" + trainInfo.nextTrainTime + "</td><td>" + trainInfo.nextTrainMin + "</td></tr>");
+       trainInfo.timeAdded + "</td><td>" + trainInfo.frequency + "</td><td>" + trainInfo.nextTrainTime + "</td><td>" + trainInfo.nextTrainMin + "</td></tr>");
    });
  });
