@@ -7,9 +7,12 @@
 }
 
 .jumbo-styling {
-    background-image: url(https://images.unsplash.com/photo-1448056975861-28196f26abd6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=022d3dff423e30dd982756b53653eec9&auto=format&fit=crop&w=2102&q=80);
+    background: #0099F7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #bd3e43, rgb(41, 41, 222));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #bd3e43, rgb(41, 41, 222)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-position: center;
     color: black;
+    text-align: center;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
